@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        return count(prices, 0, 0, prices[0]);
+    }
+    int count(vector<int>& prices, int idx, int max_diff, int min) {
+        if (idx == prices.size()) return max_diff;
+        if (min > prices[idx])min = prices[idx];
+        else max_diff = max(max_diff, prices[idx] - min);
+        return count(prices, idx + 1, max_diff, min);
+    }
+};
